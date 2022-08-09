@@ -11,6 +11,13 @@ const routes = [
       name: '地图下钻/上钻'
     },
     component: () => import('../components/MapDrill.vue'),
+  },
+  {
+    path: '/slideVerify',
+    meta: {
+      name: '滑动校验'
+    },
+    component: () => import('../views/slideVerify/SlideVerify.vue'),
   }
 ]
 

@@ -13,7 +13,7 @@ type nullable<T> = null|T;
 let chart = reactive({
   ins: null as any,
   currentMap: null as unknown as Array<ICurrentMap>, // 当前地图的name，adcode数据
-  parent: [] as any
+  parent: [] as any, // 在返回上层的时候，用来做地图路径追踪
 })
 onMounted(() => {
   chart.ins = echarts.init(document.getElementById('chart') as any);
@@ -138,7 +138,8 @@ const reloadMap = (address:any) => {
 </script>
 
 <template>
-<div>mapDrill
+<div>
+  <div>地图的上钻/下钻</div>
   <div id="chart" style="width: 100%; height: 800px;"></div>
 </div>
 </template>
