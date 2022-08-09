@@ -100,7 +100,7 @@ export default class SlideVerify {
       ctx.fillStyle = '#d9d9d9'
       ctx.fill()
     }
-    img.src = '/a.png';
+    img.src = '/eath/eath01.jpg';
     
     this.root_el.appendChild(this.canvas)
   }
@@ -138,7 +138,7 @@ export default class SlideVerify {
         resolve(canvas_m.toDataURL('image/png', 1))
       }
     })
-    img.src = '/a.png';
+    img.src = '/eath/eath01.jpg';
     return p;
   }
 

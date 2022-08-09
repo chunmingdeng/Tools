@@ -10,7 +10,7 @@ const routes = [
     meta: {
       name: '地图下钻/上钻'
     },
-    component: () => import('../components/MapDrill.vue'),
+    component: () => import('../views/mapDrill/MapDrill.vue'),
   },
   {
     path: '/slideVerify',
@@ -18,6 +18,13 @@ const routes = [
       name: '滑动校验'
     },
     component: () => import('../views/slideVerify/SlideVerify.vue'),
+  },
+  {
+    path: '/3dEarth',
+    meta: {
+      name: '3dEarth'
+    },
+    component: () => import('../views/3dEarth/Index.vue'),
   }
 ]
 
