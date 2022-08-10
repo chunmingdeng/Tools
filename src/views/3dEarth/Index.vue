@@ -8,19 +8,19 @@ import 'echarts-gl';
    关于国家的经纬度，可以用首都的经纬度或者其他城市的经纬度
    */
 var geoCoordMap: any = {
-  '南宁': [108.479, 23.1152],
-  '广州': [113.5107, 23.2196],
-  '重庆': [107.7539, 30.1904],
-  '芬兰': [24.909912, 60.169095],
-  '美国': [-100.696295, 33.679979],
-  '日本': [139.710164, 35.706962],
-  '韩国': [126.979208, 37.53875],
-  '瑞士': [7.445147, 46.956241],
-  '东南亚': [117.53244, 5.300343],
-  '澳大利亚': [135.193845, -25.304039],
-  '德国': [13.402393, 52.518569],
-  '英国': [-0.126608, 51.208425],
-  '加拿大': [-102.646409, 59.994255]
+  '南宁': [108.479, 23.1152, 0],
+  '广州': [113.5107, 23.2196, 0],
+  '重庆': [107.7539, 30.1904, 0],
+  '芬兰': [24.909912, 60.169095, 0],
+  '美国': [-100.696295, 33.679979, 0],
+  '日本': [139.710164, 35.706962, 0],
+  '韩国': [126.979208, 37.53875, 0],
+  '瑞士': [7.445147, 46.956241, 0],
+  '东南亚': [117.53244, 5.300343, 0],
+  '澳大利亚': [135.193845, -25.304039, 0],
+  '德国': [13.402393, 52.518569, 0],
+  '英国': [-0.126608, 51.208425, 0],
+  '加拿大': [-102.646409, 59.994255, 0]
 };
 
 /* 
@@ -62,8 +62,8 @@ var dser = [];  // 2D散点坐标
 //TODO====  添加的坐标文本没有展示？
 [['重庆', CQData], ['广州', GZData], ['南宁', NNData]].forEach(function (item: any, i) {
   dser.push({
-    type: 'effectScatter',
-    coordinateSystem: 'geo',
+    type: 'scatter3D',
+    coordinateSystem: 'globe',
     zlevel: 3,
     rippleEffect: {
       brushType: 'stroke'
@@ -72,13 +72,13 @@ var dser = [];  // 2D散点坐标
       fontSize: 24,
       show: true,
       position: 'right',
-      formatter: '{b}'
+      formatter: '{b}',
+      textStyle: {
+        color: '#dc6b82'
+      }
     },
     itemStyle: {
-      normal: {
-        // color: '#f5f802'
-        color: '#b81a35'
-      }
+      color: '#f1c40f'
     },
     data: item[1].map(function (dataItem: any) {
       return {
@@ -88,24 +88,23 @@ var dser = [];  // 2D散点坐标
       };
     })
   }, {
-    type: 'effectScatter',
-    coordinateSystem: 'geo',
+    type: 'scatter3D',
+    coordinateSystem: 'globe',
     zlevel: 3,
     rippleEffect: {
       brushType: 'stroke'
     },
     label: {
-      normal: {
-        show: true,
-        position: 'left',
-        fontSize: 18,
-        formatter: '{b}'
+      show: true,
+      position: 'left',
+      fontSize: 18,
+      formatter: '{b}',
+      textStyle: {
+        color: '#dc6b82'
       }
     },
     itemStyle: {
-      normal: {
-        color: '#ff0000'
-      }
+      color: '#f1c40f'
     },
     data: [{
       name: item[0],
@@ -133,6 +132,7 @@ var dser = [];  // 2D散点坐标
     data: convertData(item[1])// 特效的起始、终点位置，一个二维数组，相当于coords: convertData(item[1])
   })
 });
+series.push(...dser)
 
 
 const option = {
@@ -140,7 +140,7 @@ const option = {
   globe: {
     baseTexture: '/eath/eath02.jpg', // 球面基础贴图
     // heightTexture: '/eath/eath01.jpg', // 深度信息，利用图片的颜色
-    // environment: '/eath/starfield.jpg', // 背景星空
+    environment: '/eath/starfield.jpg', // 背景星空
     displacementScale: 0.1,
     shading: 'lambert',
     light: {
